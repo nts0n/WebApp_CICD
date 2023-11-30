@@ -1,0 +1,9 @@
+- name: Stop Apache
+  hosts: Azure_Host
+  remote_user: azureuser
+  become: true
+  tasks:
+    - name: Start Apache service
+      service:
+        name: apache2
+        state: stopped

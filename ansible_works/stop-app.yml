@@ -1,0 +1,9 @@
+- name: Start App
+  hosts: Azure_Host
+  remote_user: azureuser
+  become: true
+  tasks:
+    - name: Stop web app
+      command: pm2 stop app.js
+      args:
+        chdir: /var/www/html/blog-app

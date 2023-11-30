@@ -1,0 +1,16 @@
+- name: Install Node.js and npm
+  apt:
+    name:
+      - nodejs
+      - npm
+    state: present
+        
+- name: Install MongoDB
+  apt:
+    name: mongodb
+    state: present
+        
+- name: Install pm2
+  npm:
+    name: pm2
+    global: yes

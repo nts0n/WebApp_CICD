@@ -1,0 +1,26 @@
+<VirtualHost *:80>
+    ServerName blogapp.nhom4
+
+    #Redirect permanent / https://blogapp.nhom4/
+
+    ProxyPass "/" "http://localhost:3030/"
+    ProxyPassReverse "/" "http://localhost:3030/"
+    
+    ProxyPass "/posts" "http://localhost:3030/posts"
+    ProxyPassReverse "/posts" "http://localhost:3030/posts"
+    
+    ProxyPass "/comments" "http://localhost:3030/comments"
+    ProxyPassReverse "/comments" "http://localhost:3030/comments"
+    
+    ProxyPass "/index" "http://localhost:3030/index"
+    ProxyPassReverse "/index" "http://localhost:3030/index"
+    
+    ProxyPass "/user" "http://localhost:3030/user"
+    ProxyPassReverse "/user" "http://localhost:3030/user"
+    
+    ProxyPass "/login" "http://localhost:3030/login"
+    ProxyPassReverse "/login" "http://localhost:3030/login"
+    
+    ProxyPass "/register" "http://localhost:3030/register"
+    ProxyPassReverse "/register" "http://localhost:3030/register"
+</VirtualHost>

@@ -1,0 +1,35 @@
+- name: Copy cert
+  copy:
+    src:   files/certificate.crt
+    dest: /etc/ssl/certificate.crt
+        
+- name: Copy ca_bundle
+  copy:
+    src:   files/ca_bundle.crt
+    dest: /etc/ssl/ca_bundle.crt
+        
+- name: Copy private key
+  copy:
+    src: files/private.key
+    dest: /etc/ssl/private/private.key
+        
+- name: Config SSL
+  template:
+    src:   files/ssl-config.conf.j2
+    dest: /etc/apache2/sites-available/default-ssl.conf
+        
+- name: Configure Apache2 virtual host
+  template:
+    src:   files/apache.conf.j2
+    dest: /etc/apache2/sites-available/000-default.conf
+        
+- name: Enable the new SSL virtual host
+  shell: a2ensite default-ssl
+        
+- name: Restart Apache2
+  service:
+    name: apache2
+    state: restarted
+        
+- name: Enable SSL
+  shell: sudo a2enmod ssl
